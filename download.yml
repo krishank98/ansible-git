@@ -1,0 +1,19 @@
+---
+ - hosts: dev
+   user: ansible
+   become: yes
+   connection: ssh
+   tasks:
+           - name: downloading and installing a pkg
+             get_url:
+
+                     url: "https://packages.chef.io/files/stable/chefdk/4.13.3/debian/10/chefdk_4.13.3-1_amd64.deb"
+                     dest: /home/ansible
+                     mode: 0755
+           - name: locating the file
+             find:
+                     paths: /home/ansible
+                     patterns: '*.deb'
+
+           - name: installing
+             shell: apt install ./*.deb -y

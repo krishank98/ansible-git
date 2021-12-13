@@ -1,0 +1,29 @@
+---
+ - hosts: dev
+   user: ansible
+   become: yes
+   connection: ssh
+   tasks:
+           - name: installing wamp packages
+             action: apt pkg={{item}} state=present
+             with_items:
+                     - apache2
+                     - firewalld
+                     - mariadb-server
+                     - php
+
+           - name: enabling service 
+             action: service name={{item}} state=started
+             with_items:
+                    - apache2
+                    - firewalld
+                    - mariadb
+
+           - name: enabling http in firewalld
+             firewalld: port=80/tcp permanent=true state=enabled
+
+           - name: restrating firewalld
+             action: service name=firewalld state=restarted
+
+           - name: changing index file
+             copy: dest=/var/www/html/index.html  content="hello"

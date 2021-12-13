@@ -27,3 +27,12 @@ ansible-playbook ply.yml
 su ansible
 ls
 su ansible
+ls
+sudo su
+su ansible
+ls
+sudo su
+ls
+su ansible
+ls
+su ansible

@@ -1,0 +1,17 @@
+---
+ - hosts: dev
+   user: ansible
+   become: yes
+   connection: ssh
+   tasks:
+           - name: push to git repositiory
+             git_acp:
+                     user: krishank98
+                     token: mytoken
+                     path: /home/ansible
+                     branch: master
+                     comment: add all files
+                     add: ["."]
+                     mode: https
+                     url: "https://github.com/krishank98/ansible-git.git"
+

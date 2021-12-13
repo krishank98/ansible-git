@@ -1,0 +1,12 @@
+---
+ - hosts: dev
+   user: ansible
+   become: yes
+   connection: ssh
+   tasks:
+           - name: push to remote repository
+             shell: git clone https://github.com/krishank98/ansible-git.git
+             shell: git add .
+             shell: git commit -m "adding file"
+             shell: git push https://krishank98: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@github.com/krishank98/ansible-git.git 
+             
